@@ -1,9 +1,10 @@
 <template>
-  <div class="search">
-    <h1>This is a search page</h1>
-  </div>
+  <SearchCharacter />
 </template>
 
 <style>
 
 </style>
+<script setup lang="ts">
+import SearchCharacter from "@/components/SearchCharacter.vue";
+</script>

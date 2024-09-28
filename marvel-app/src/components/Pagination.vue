@@ -6,7 +6,7 @@ const props = defineProps<{
 }>();
 
 const isOnFirstPage = props.currentPage === 0;
-const isOnLastPage = props.currentPage === props.totalPages;
+const isOnLastPage = props.currentPage + 1 === props.totalPages;
 </script>
 
 <template>

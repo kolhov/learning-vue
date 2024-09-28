@@ -31,17 +31,21 @@ interface ApiOptions {
 }
 
 export async function useMarvelAPI(path: Path, options: ApiOptions): Promise<Comics | Characters>{
+  try {
   const pagination = getPagination(options.page);
   const query = getQuery(options.query);
 
   const requestURI = getRequestURI(path, query, pagination);
   return useFetch(requestURI);
+  } catch {
+    throw new Error('An error occurred while trying to get Marvel data')
+  }
 }
 
 export const useComics = async (page: number = 0): Promise<Comics> => {
   return await useMarvelAPI(Path.COMICS, { page }) as Comics;
 }
 
-export async function useCharactersSearch(query: string, page: number = 0): Promise<Characters>{
+export async function useCharacterSearch(query: string, page: number = 0): Promise<Characters>{
   return await useMarvelAPI(Path.CHARACTERS, {query: `nameStartsWith=${query}`, page}) as Characters
 }
